@@ -1,0 +1,13 @@
+---
+title: "CLASE 2 - Introducción a Tidyverse "
+subtitle: "Curso de Introducción a R - Observatorio de Legimación de la Violencia (OLES)"
+format: html
+editor: visual
+author:
+  - name: Matías Deneken
+    email: m.deneken@uc.cl
+    affiliations:
+      - name: CIIR & OLES
+---
+
+## Introducción 
