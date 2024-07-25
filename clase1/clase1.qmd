@@ -10,11 +10,11 @@ author:
       - name: CIIR & OLES
 ---
 
-## Introducción 
+## Introducción
 
 OLES es......
 
-## Datos 
+## Datos
 
 ```{r}
 1 + 1
@@ -29,4 +29,4 @@ OLES es......
 
 ## Lalaxd
 
-##  
+## 
