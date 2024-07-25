@@ -1,26 +1,30 @@
 ---
-title: "Clase-1"
+title: "CLASE 1 - R Base "
+subtitle: "Curso de Introducción a R - Observatorio de Legimación de la Violencia (OLES)"
 format: html
 editor: visual
+author:
+  - name: Matías Deneken
+    email: m.deneken@uc.cl
+    affiliations:
+      - name: CIIR & OLES
 ---
 
-## Quarto
+## Introducción 
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+OLES es......
 
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Datos 
 
 ```{r}
 1 + 1
 ```
 
-You can add options to executable code like this
+## Procesamiento de base de datos
 
 ```{r}
 #| echo: false
 2 * 2
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+## . 
