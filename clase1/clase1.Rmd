@@ -5,3 +5,8 @@ date: "Lala"
 output: html_document
 ---
 
+## Introducción 
+
+En el presente curso -------.
+
+## ¿Que se entiende por R base?
