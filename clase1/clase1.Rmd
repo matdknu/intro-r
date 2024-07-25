@@ -10,3 +10,15 @@ output: html_document
 En el presente curso -------.
 
 ## ¿Que se entiende por R base?
+
+
+```{r}
+library(tidyverse)
+data(iris)
+```
+
+
+```{r}
+iris
+```
+
