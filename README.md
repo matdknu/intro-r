@@ -4,9 +4,7 @@
 
 El presente curso busca dotar a sus estudiantes de conocimiento práctico en el software R, en su interfaz R Studio. El curso se plantea desde una introducción a R, procesamiento de datos con el paquete tidyverse y una breve introducción al procesamiento de datos textuales.
 
-$Y = \beta_0 + \beta_1 X_ + \beta_2 X_2 + \epsilon$
-
-Dudas y consultas: [m.deneken\@uc.cl](m.deneken@uc.cl)
+Dudas y consultas: [m.deneken[at]uc.cl](m.deneken@uc.cl)
 
 | Clase | Contenido                                     | Link                                                    | Referencias  |
 |------------------|------------------------|------------------|------------|
