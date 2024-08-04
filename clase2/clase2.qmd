@@ -25,7 +25,7 @@ Este curso de R buscará introducir a los y las participantes en las nociones b�
 
 : Planificación de las sesiones
 
-# ¿Qué es Tidyverse? 
+# ¿Qué es Tidyverse?
 
 El proceso de análisis de datos siempre conlleva procedimientos de limpieza de los valores que implican realizar eliminación o generación de nuevos datos. Este proceso es relevante ya que sin datos eficientes y veraces todos los procesos posteriores serán erróneos o poco eficaces.
 
@@ -54,6 +54,5 @@ library(readxl) #Datos de excel
 Importaremos la bb
 
 ```{r}
-getwd()
-data <- read_excel("bbdd/eventos_22_24.xlsx")
+data <- read_excel("/Users/matdknu/Dropbox/OLES/intro-r/bbdd/eventos_22_24.xlsx")
 ```
