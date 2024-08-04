@@ -195,11 +195,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GET</span>(url, <span class="fu">write_disk</span>(temp_file, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://raw.githubusercontent.com/matdknu/intro-r/main/bbdd/eventos_22_24.xlsx]
-  Date: 2024-08-04 22:25
+  Date: 2024-08-04 22:37
   Status: 200
   Content-Type: application/octet-stream
   Size: 3.08 MB
-&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//RtmpXb4zWU/file2b746ec3b317.xlsx</code></pre>
+&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//RtmplCMmkG/file2d0e4dcf7f19.xlsx</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo Excel en R</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>eventos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(temp_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -361,6 +361,72 @@ $ ...9                  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 4 Concentración           REGION METROPOLITANA               2022-12-17 00:00:00
 5 Concentración           REGION METROPOLITANA               2022-12-16 00:00:00
 6 Marcha sin autorización REGION METROPOLITANA               2022-12-12 00:00:00</code></pre>
+</div>
+</div>
+<p>Crear nuevas variables desde cero o a partir de las ya existentes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>eventos <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">anio_actual =</span> <span class="dv">2024</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(tipo, region, fecha_inicio, anio_actual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6,090 × 4
+   tipo                    region               fecha_inicio        anio_actual
+   &lt;chr&gt;                   &lt;chr&gt;                &lt;dttm&gt;                    &lt;dbl&gt;
+ 1 Manifestación           V REGION VALPARAISO  2022-12-31 00:00:00        2024
+ 2 Concentración           REGION METROPOLITANA 2022-12-30 00:00:00        2024
+ 3 Manifestación           REGION METROPOLITANA 2022-12-30 00:00:00        2024
+ 4 Marcha con autorización X REGION LOS LAGOS   2022-12-30 00:00:00        2024
+ 5 Manifestación           X REGION LOS LAGOS   2022-12-30 00:00:00        2024
+ 6 Manifestación           VIII REGION BIO BIO  2022-12-30 00:00:00        2024
+ 7 Manifestación           REGION METROPOLITANA 2022-12-30 00:00:00        2024
+ 8 Manifestación           REGION METROPOLITANA 2022-12-29 00:00:00        2024
+ 9 Manifestación           REGION METROPOLITANA 2022-12-29 00:00:00        2024
+10 Manifestación           REGION METROPOLITANA 2022-12-29 00:00:00        2024
+# ℹ 6,080 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>eventos <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">manifestantes_cien =</span> n_asistentes <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(manifestantes_cien, n_asistentes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6,090 × 2
+   manifestantes_cien n_asistentes
+                &lt;dbl&gt;        &lt;dbl&gt;
+ 1               3000           30
+ 2               4000           40
+ 3               7000           70
+ 4               5000           50
+ 5               2500           25
+ 6               2500           25
+ 7              10000          100
+ 8               6000           60
+ 9               7000           70
+10               1500           15
+# ℹ 6,080 more rows</code></pre>
+</div>
+</div>
+<p>Crear una nueva variable con <code>case_when</code> .</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>eventos <span class="ot">&lt;-</span> eventos <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cat_asistentes =</span> <span class="fu">case_when</span>(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    n_asistentes <span class="sc">&lt;</span> <span class="dv">250</span> <span class="sc">~</span> <span class="st">"Pequeña"</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    n_asistentes <span class="sc">&gt;=</span> <span class="dv">250</span> <span class="sc">&amp;</span> n_asistentes <span class="sc">&lt;=</span> <span class="dv">1000</span> <span class="sc">~</span> <span class="st">"Mediana"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    n_asistentes <span class="sc">&gt;</span> <span class="dv">1000</span> <span class="sc">~</span> <span class="st">"Masiva"</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>eventos <span class="sc">%&gt;%</span> <span class="fu">select</span>(cat_asistentes, n_asistentes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6,090 × 2
+   cat_asistentes n_asistentes
+   &lt;chr&gt;                 &lt;dbl&gt;
+ 1 Pequeña                  30
+ 2 Pequeña                  40
+ 3 Pequeña                  70
+ 4 Pequeña                  50
+ 5 Pequeña                  25
+ 6 Pequeña                  25
+ 7 Pequeña                 100
+ 8 Pequeña                  60
+ 9 Pequeña                  70
+10 Pequeña                  15
+# ℹ 6,080 more rows</code></pre>
 </div>
 </div>
 </section>

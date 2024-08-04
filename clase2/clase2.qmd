@@ -183,3 +183,27 @@ Combinemos algunas funciones
 eventos100 <-eventos %>% filter(n_asistentes == 100)%>% select(tipo, region, fecha_inicio)
 head(eventos100)
 ```
+
+Crear nuevas variables desde cero o a partir de las ya existentes.
+
+```{r}
+eventos %>% mutate(anio_actual = 2024) %>% select(tipo, region, fecha_inicio, anio_actual)
+```
+
+```{r}
+eventos %>% mutate(manifestantes_cien = n_asistentes * 100) %>% select(manifestantes_cien, n_asistentes)
+```
+
+Crear una nueva variable con `case_when` .
+
+```{r}
+eventos <- eventos %>%
+  mutate(cat_asistentes = case_when(
+    n_asistentes < 250 ~ "Pequeña",
+    n_asistentes >= 250 & n_asistentes <= 1000 ~ "Mediana",
+    n_asistentes > 1000 ~ "Masiva"
+  ))
+
+eventos %>% select(cat_asistentes, n_asistentes)
+
+```
