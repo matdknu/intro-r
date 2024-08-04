@@ -17,7 +17,7 @@ Al final del curso se buscará que las personas que hayan participado tengan noc
 Dudas y consultas: [m.deneken[at]uc.cl](m.deneken@uc.cl)
 
 | Clase | Contenido                                            | Link                                                    | Referencias                                                                |
-|---------------|---------------|------------------|-------------------------|
+|-------|------------------------------------------------------|---------------------------------------------------------|----------------------------------------------------------------------------|
 | 1     | Introducción a R                                     | [Aquí](https://matdknu.github.io/intro-r/clase1/clase1) | [An Introduction to R](https://intro2r.com "An Introduction to R [Libro]") |
 | 2     | Procesamiento de Datos Cuantitativos con Tidyverse   | [Aquí](https://matdknu.github.io/intro-r/clase2/clase2) | [R For Data Science](https://r4ds.had.co.nz/ "R For Data Science")         |
 | 3     | Visualización de Datos Cuantitativos con con Ggplot2 | [Aquí](https://matdknu.github.io/intro-r/clase3/clase3) | [R For Data Science](https://r4ds.had.co.nz/ "R For Data Science")         |
