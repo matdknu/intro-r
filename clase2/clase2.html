@@ -195,11 +195,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GET</span>(url, <span class="fu">write_disk</span>(temp_file, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://raw.githubusercontent.com/matdknu/intro-r/main/bbdd/eventos_22_24.xlsx]
-  Date: 2024-08-04 22:37
+  Date: 2024-08-04 22:43
   Status: 200
   Content-Type: application/octet-stream
   Size: 3.08 MB
-&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//RtmplCMmkG/file2d0e4dcf7f19.xlsx</code></pre>
+&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//Rtmpub9OvS/file2e194cf0f293.xlsx</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo Excel en R</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>eventos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(temp_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -427,6 +427,63 @@ $ ...9                  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
  9 Pequeña                  70
 10 Pequeña                  15
 # ℹ 6,080 more rows</code></pre>
+</div>
+</div>
+<p>Usemos la función count para contar cuantas de ellas existen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>eventos <span class="sc">%&gt;%</span> <span class="fu">count</span>(cat_asistentes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  cat_asistentes     n
+  &lt;chr&gt;          &lt;int&gt;
+1 Masiva            82
+2 Mediana          329
+3 Pequeña         5679</code></pre>
+</div>
+</div>
+</section>
+<section id="función-group_by" class="level3">
+<h3 class="anchored" data-anchor-id="función-group_by">Función: <code>Group_by</code></h3>
+<p>Una función que requiere un mayor nivel de abstracción es <code>group_by</code> .</p>
+<p>La función&nbsp;<code>group_by()</code>&nbsp;en&nbsp;<code>dplyr</code>, que es parte del&nbsp;<code>tidyverse</code>, se utiliza para agrupar filas de un dataframe según una o más variables. Esta agrupación permite realizar operaciones agregadas en subconjuntos de datos, lo que es útil para resumir información, calcular estadísticas agrupadas y realizar transformaciones específicas por grupo.</p>
+<p>Por ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>protestas_region <span class="ot">&lt;-</span> eventos <span class="sc">%&gt;%</span> <span class="fu">select</span>(motivo, region) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(motivo)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(protestas_region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+# Groups:   region [1]
+  region            motivo                                 n
+  &lt;chr&gt;             &lt;chr&gt;                              &lt;int&gt;
+1 I REGION TARAPACA Ambientalista                          1
+2 I REGION TARAPACA Estudiantil                            1
+3 I REGION TARAPACA Estudiantil (Educación secundaria)     4
+4 I REGION TARAPACA Estudiantil (Educación superior)       1
+5 I REGION TARAPACA Género                                 1
+6 I REGION TARAPACA Género (Feminista)                     6</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>protestas_region_filtrada <span class="ot">&lt;-</span> eventos <span class="sc">%&gt;%</span> <span class="fu">select</span>(motivo, region) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(motivo) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">20</span>) <span class="co">#Mayores que 20</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(protestas_region_filtrada)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+# Groups:   region [5]
+  region                motivo                           n
+  &lt;chr&gt;                 &lt;chr&gt;                        &lt;int&gt;
+1 I REGION TARAPACA     Social                          28
+2 II REGION ANTOFAGASTA Laboral (Colegio profesores)    25
+3 II REGION ANTOFAGASTA Social                          28
+4 III REGION ATACAMA    Laboral (Colegio profesores)    24
+5 IV REGION COQUIMBO    Social (Otras agrupaciones)     35
+6 IX REGION ARAUCANIA   Étnico                         153</code></pre>
 </div>
 </div>
 </section>

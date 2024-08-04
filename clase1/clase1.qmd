@@ -16,12 +16,12 @@ El Observatorio de Violencia y Legitimidad Social (OLES) es una plataforma que d
 
 Este curso de R buscará introducir a los y las participantes en las nociones básicas del software en su interfaz de R Studio. Para su instalación pueden ver el siguiente vídeo pinchando [\[Aquí\]](https://www.youtube.com/watch?v=RtkCAKXsVbw&t=204s).
 
-| Clases                                             |
-|----------------------------------------------------|
-| **Introducción a R**                               |
-| Procesamiento de Datos Cuantitativos con Tidyverse |
-| Visualización de datos con Tidyverse               |
-| Introducción al análisis cuantitativo del texto    |
+| Clases                                                          |
+|-----------------------------------------------------------------|
+| **Introducción a R**                                            |
+| Procesamiento de Datos Cuantitativos con Tidyverse              |
+| Estadísticas descriptiva y Visualización de datos con Tidyverse |
+| Introducción al análisis cuantitativo del texto                 |
 
 : Planificación de las sesiones
 

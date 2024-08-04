@@ -20,12 +20,12 @@ El Observatorio de Violencia y Legitimidad Social (OLES) es una plataforma que d
 
 Este curso de R buscará introducir a los y las participantes en las nociones básicas del software en su interfaz de R Studio. Para su instalación pueden ver el siguiente vídeo pinchando [\[Aquí\]](https://www.youtube.com/watch?v=RtkCAKXsVbw&t=204s).
 
-| Clases                                                 |
-|--------------------------------------------------------|
-| Introducción a R                                       |
-| **Procesamiento de Datos Cuantitativos con Tidyverse** |
-| Visualización de datos con Tidyverse                   |
-| Introducción al análisis cuantitativo del texto        |
+| Clases                                                          |
+|-----------------------------------------------------------------|
+| Introducción a R                                                |
+| **Procesamiento de Datos Cuantitativos con Tidyverse**          |
+| Estadísticas descriptiva y Visualización de datos con Tidyverse |
+| Introducción al análisis cuantitativo del texto                 |
 
 : Planificación de las sesiones
 
@@ -206,4 +206,35 @@ eventos <- eventos %>%
 
 eventos %>% select(cat_asistentes, n_asistentes)
 
+```
+
+Usemos la función count para contar cuantas de ellas existen:
+
+```{r}
+eventos %>% count(cat_asistentes)
+```
+
+### Función: `Group_by`
+
+Una función que requiere un mayor nivel de abstracción es `group_by` .
+
+La función `group_by()` en `dplyr`, que es parte del `tidyverse`, se utiliza para agrupar filas de un dataframe según una o más variables. Esta agrupación permite realizar operaciones agregadas en subconjuntos de datos, lo que es útil para resumir información, calcular estadísticas agrupadas y realizar transformaciones específicas por grupo.
+
+Por ejemplo:
+
+```{r}
+protestas_region <- eventos %>% select(motivo, region) %>% 
+  group_by(region) %>% 
+  count(motivo)
+
+head(protestas_region)
+```
+
+```{r}
+protestas_region_filtrada <- eventos %>% select(motivo, region) %>% 
+  group_by(region) %>% 
+  count(motivo) %>% 
+  filter(n > 20) #Mayores que 20
+
+head(protestas_region_filtrada)
 ```
