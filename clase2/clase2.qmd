@@ -238,3 +238,9 @@ protestas_region_filtrada <- eventos %>% select(motivo, region) %>%
 
 head(protestas_region_filtrada)
 ```
+
+```{r}
+masividad_protestas_region <- eventos %>% select(cat_asistentes, region) %>% 
+  group_by(region) %>% 
+  count(cat_asistentes) 
+```
