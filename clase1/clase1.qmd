@@ -23,6 +23,15 @@ El Observatorio de Violencia y Legitimidad Social (OLES) es una plataforma que d
 
 : Planificación de las sesiones
 
+# Antes de partir
+
+Ver este vídeo sobre la elección del directorio de trabajo [\[Pinchar aquí\]](https://www.youtube.com/watch?v=TDKyTT1kAMQ).
+
+**Conceptos claves:**
+
+-   `getwd()`
+-   `setwd()`
+
 # ¿Qué es el R base?
 
 El término "R base" se refiere a la versión fundamental del lenguaje de programación R y su conjunto de funciones y paquetes básicos que vienen preinstalados cuando se instala R. R base incluye las herramientas esenciales necesarias para realizar análisis estadísticos, manipulación de datos y generación de gráficos sin necesidad de instalar paquetes adicionales (Respuesta de ChatGPT).
@@ -147,7 +156,7 @@ head(data_chile) # muestra 6 primeras observaciones
 dim(data_chile)
 ```
 
-## Procesamiento de datos del plebiscito de 1988. 
+## Procesamiento de datos del plebiscito de 1988.
 
 ### Descripción y manipulació de datos
 
