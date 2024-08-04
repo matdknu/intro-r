@@ -111,32 +111,289 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introducción" class="level2">
-<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
-<p>OLES es……</p>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>El Observatorio de Violencia y Legitimidad Social (OLES) es una plataforma que desarrolla investigación colaborativa en temáticas relacionadas con la violencia, explorando sus sentidos, formas de justificación, así como las diversas formas en que la sociedad chilena ha desarrollado procesos de construcción de legitimidad social frente a las autoridades, considerando el rol de la justicia como elemento clave en la comprensión de las transformaciones sociales que vive actualmente el país.</p>
+<table class="table">
+<caption>Planificación de las sesiones</caption>
+<thead>
+<tr class="header">
+<th>Clases</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Introducción a R</strong></td>
+</tr>
+<tr class="even">
+<td>Procesamiento de Datos Numéricos con Tidyverse</td>
+</tr>
+<tr class="odd">
+<td>Procesamiento de Datos Numéricos con Tidyverse</td>
+</tr>
+<tr class="even">
+<td>Procesamiento de Datos Textuales con Tidyverse</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="datos" class="level2">
-<h2 class="anchored" data-anchor-id="datos">Datos</h2>
+<section id="qué-es-el-r-base" class="level1">
+<h1>¿Qué es el R base?</h1>
+<p>El término “R base” se refiere a la versión fundamental del lenguaje de programación R y su conjunto de funciones y paquetes básicos que vienen preinstalados cuando se instala R. R base incluye las herramientas esenciales necesarias para realizar análisis estadísticos, manipulación de datos y generación de gráficos sin necesidad de instalar paquetes adicionales (Respuesta de ChatGPT).</p>
+<section id="r-como-calculadora" class="level2">
+<h2 class="anchored" data-anchor-id="r-como-calculadora">R como calculadora</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>      <span class="co"># suma</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span>        <span class="co"># división</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="dv">2</span>        <span class="co"># multiplicación</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">2</span>        <span class="co"># exponente</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">2</span>)    <span class="co"># raiz cuadrada</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">2</span>)     <span class="co"># log</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">2</span>)     <span class="co"># exponencial</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">==</span> <span class="dv">2</span>     <span class="co"># evaluación lógica</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dv">42</span> <span class="sc">&gt;=</span> <span class="dv">2</span>    <span class="co"># evaluación lógica</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">&lt;=</span> <span class="dv">42</span>    <span class="co"># evaluación lógica</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">!=</span> <span class="dv">42</span>    <span class="co"># evaluación lógica</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="dv">23</span> <span class="sc">%/%</span> <span class="dv">2</span>   <span class="co"># division por entero -&gt; 11</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dv">23</span> <span class="sc">%%</span> <span class="dv">2</span>    <span class="co"># el remanente -&gt; 1</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">7</span>        <span class="co"># operador de asignación</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="procesamiento-de-base-de-datos" class="level2">
-<h2 class="anchored" data-anchor-id="procesamiento-de-base-de-datos">Procesamiento de base de datos</h2>
+<section id="r-en-base-a-objetos" class="level2">
+<h2 class="anchored" data-anchor-id="r-en-base-a-objetos">R en base a objetos</h2>
+<p>R es un lenguaje de programación orientado a objetos (OOP), lo que significa que organiza los datos y las funcionalidades en estructuras llamadas objetos. En R, casi todo es un objeto, incluidos los datos, las funciones y los resultados de las operaciones. Esta orientación a objetos permite una mayor modularidad y reutilización del código. A continuación, se describen los conceptos básicos de la programación orientada a objetos en R.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Operaciones aritméticas básicas</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>suma <span class="ot">&lt;-</span> a <span class="sc">+</span> b          <span class="co"># Suma</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>resta <span class="ot">&lt;-</span> a <span class="sc">-</span> b         <span class="co"># Resta</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>producto <span class="ot">&lt;-</span> a <span class="sc">*</span> b      <span class="co"># Multiplicación</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>cociente <span class="ot">&lt;-</span> a <span class="sc">/</span> b      <span class="co"># División</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>potencia <span class="ot">&lt;-</span> a <span class="sc">^</span> b      <span class="co"># Exponenciación</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="procesamiento-básico-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="procesamiento-básico-de-datos">Procesamiento básico de datos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadísticas descriptivas básicas</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">42</span>) <span class="co"># Vector de datos</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(data)        <span class="co"># Media</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>mediana <span class="ot">&lt;-</span> <span class="fu">median</span>(data)    <span class="co"># Mediana</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>desviacion <span class="ot">&lt;-</span> <span class="fu">sd</span>(data)     <span class="co"># Desviación estándar</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>resumen <span class="ot">&lt;-</span> <span class="fu">summary</span>(data)   <span class="co"># Resumen estadístico</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="vectores-y-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="vectores-y-matrices">Vectores y matrices</h2>
+<p>Un vector en R es una estructura de datos unidimensional que contiene elementos del mismo tipo. Es el tipo de datos más básico y fundamental en R. Los elementos de un vector pueden ser numéricos, caracteres, lógicos, entre otros. Los vectores se crean utilizando la función c(), que concatena los elementos.</p>
+<p>Una matriz en R es una estructura de datos bidimensional que contiene elementos del mismo tipo, organizados en filas y columnas. Las matrices se crean utilizando la función matrix().</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el vector de datos</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">42</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el vector de nombres</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>rut <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinar los vectores en una matriz</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Opción 1</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(rut, data), <span class="at">byrow=</span><span class="cn">FALSE</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Opción 2</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(rut, data), <span class="at">nrow=</span><span class="dv">6</span>, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">FALSE</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignar nombres a las columnas</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(matriz) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Nombre"</span>, <span class="st">"Valor"</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>matriz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="dataframe." class="level2">
+<h2 class="anchored" data-anchor-id="dataframe.">Dataframe.</h2>
+<p>Un data.frame en R es una estructura de datos bidimensional similar a una tabla en una base de datos o una hoja de cálculo en Excel. Es una de las estructuras de datos más comunes y útiles en R para manejar conjuntos de datos. Un data.frame puede contener columnas de diferentes tipos de datos (numéricos, caracteres, factores, etc.), y cada columna debe tener el mismo número de elementos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">42</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>matriz3 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(nombres, data), <span class="at">nrow=</span><span class="dv">6</span>, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">FALSE</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>matriz3 <span class="co"># No está bien.</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Nombre =</span> nombres, <span class="at">Valor =</span> valores)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>df <span class="co"># Manipulable.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="las-librerías" class="level2">
+<h2 class="anchored" data-anchor-id="las-librerías">Las librerías</h2>
+<p>Una librería en R, también conocida como paquete (package), es una colección de funciones, datos y compilaciones de código que extienden las capacidades del lenguaje R. Las librerías permiten a los usuarios realizar tareas específicas sin tener que escribir código desde cero, aprovechando así el trabajo y la experiencia de otros desarrolladores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargamos los datos de Chile</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("carData")</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"carData"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"Chile"</span>) <span class="co"># datos "flotante"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>data_chile <span class="ot">&lt;-</span> Chile; <span class="co"># crea dataframe</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(Chile) <span class="co"># remueve "flotante"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_chile) <span class="co"># muestra 6 primeras observaciones</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code>  region population sex age education income statusquo vote
+1      N     175000   M  65         P  35000   1.00820    Y
+2      N     175000   M  29        PS   7500  -1.29617    N
+3      N     175000   F  38         P  15000   1.23072    Y
+4      N     175000   F  49         P  35000  -1.03163    N
+5      N     175000   F  23         S  35000  -1.10496    N
+6      N     175000   F  28         P   7500  -1.04685    N</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(data_chile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2700    8</code></pre>
 </div>
 </div>
 </section>
-<section id="lalaxd" class="level2">
-<h2 class="anchored" data-anchor-id="lalaxd">Lalaxd</h2>
+<section id="procesamiento-de-datos-del-plebiscito-de-1988." class="level2">
+<h2 class="anchored" data-anchor-id="procesamiento-de-datos-del-plebiscito-de-1988.">Procesamiento de datos del plebiscito de 1988.</h2>
+<section id="descripción-y-manipulació-de-datos" class="level3">
+<h3 class="anchored" data-anchor-id="descripción-y-manipulació-de-datos">Descripción y manipulació de datos</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data_chile[<span class="dv">3</span>,<span class="dv">8</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># todas las columnas de la fila 4</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_chile[<span class="dv">4</span>,])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># todas las filas de la columna 6</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_chile[,<span class="dv">6</span>])</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>data_chile[<span class="sc">-</span><span class="dv">1</span>,]                   <span class="co"># excluye primera fila</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>data_chile[, <span class="sc">-</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>)]              <span class="co"># excluye columnas 2 a 4</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>data_chile[, <span class="fu">c</span>(<span class="st">"income"</span>,<span class="st">"vote"</span>)]  <span class="co"># solo vars income and vote</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>data_chile[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="st">'vote'</span>]         <span class="co"># variable voto para observaciones 1 y 5</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>data_chile<span class="sc">$</span>vote                  <span class="co"># selecciona col vote</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="filtro-de-datos" class="level3">
+<h3 class="anchored" data-anchor-id="filtro-de-datos">Filtro de datos</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>jovenes_pinochetistas <span class="ot">&lt;-</span> data_chile[data_chile<span class="sc">$</span>age <span class="sc">&lt;=</span> <span class="dv">35</span> <span class="sc">&amp;</span> data_chile<span class="sc">$</span>vote<span class="sc">==</span><span class="st">"Y"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="creación-de-nuevas-variables" class="level3">
+<h3 class="anchored" data-anchor-id="creación-de-nuevas-variables">Creación de nuevas variables</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data_chile<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="dv">1988</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data_chile<span class="sc">$</span>birthyear <span class="ot">&lt;-</span> data_chile<span class="sc">$</span>year <span class="sc">-</span>  data_chile<span class="sc">$</span>age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data_chile<span class="sc">$</span>age_group <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data_chile<span class="sc">$</span>age_group[data_chile<span class="sc">$</span>age <span class="sc">&lt;=</span><span class="dv">35</span>] <span class="ot">&lt;-</span> <span class="st">"Young"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>data_chile<span class="sc">$</span>age_group[data_chile<span class="sc">$</span>age <span class="sc">&gt;</span> <span class="dv">35</span>] <span class="ot">&lt;-</span> <span class="st">"Old"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="resumen-de-datos" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-de-datos">Resumen de datos</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_chile[,<span class="fu">c</span>(<span class="st">"age"</span>,<span class="st">"income"</span>,<span class="st">"vote"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      age            income         vote    
+ Min.   :18.00   Min.   :  2500   A   :187  
+ 1st Qu.:26.00   1st Qu.:  7500   N   :889  
+ Median :36.00   Median : 15000   U   :588  
+ Mean   :38.55   Mean   : 33876   Y   :868  
+ 3rd Qu.:49.00   3rd Qu.: 35000   NA's:168  
+ Max.   :70.00   Max.   :200000             
+ NA's   :1       NA's   :98                 </code></pre>
+</div>
+</div>
+</section>
+<section id="estructura-de-datos" class="level3">
+<h3 class="anchored" data-anchor-id="estructura-de-datos">Estructura de datos</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_chile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   2700 obs. of  11 variables:
+ $ region    : Factor w/ 5 levels "C","M","N","S",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ population: int  175000 175000 175000 175000 175000 175000 175000 175000 175000 175000 ...
+ $ sex       : Factor w/ 2 levels "F","M": 2 2 1 1 1 1 2 1 1 2 ...
+ $ age       : int  65 29 38 49 23 28 26 24 41 41 ...
+ $ education : Factor w/ 3 levels "P","PS","S": 1 2 1 1 3 1 2 3 1 1 ...
+ $ income    : int  35000 7500 15000 35000 35000 7500 35000 15000 15000 15000 ...
+ $ statusquo : num  1.01 -1.3 1.23 -1.03 -1.1 ...
+ $ vote      : Factor w/ 4 levels "A","N","U","Y": 4 2 4 2 2 2 2 2 3 2 ...
+ $ year      : num  1988 1988 1988 1988 1988 ...
+ $ birthyear : num  1923 1959 1950 1939 1965 ...
+ $ age_group : chr  "Old" "Young" "Old" "Old" ...</code></pre>
+</div>
+</div>
+</section>
+<section id="tablas-de-contigencia" class="level3">
+<h3 class="anchored" data-anchor-id="tablas-de-contigencia">Tablas de contigencia</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mytable <span class="ot">&lt;-</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data_chile<span class="sc">$</span>sex, data_chile<span class="sc">$</span>vote)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>mytable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   
+      A   N   U   Y
+  F 104 363 362 480
+  M  83 526 226 388</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparación dentro de los sexos</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(mytable,<span class="at">margin=</span><span class="dv">1</span>),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   
+       A    N    U    Y
+  F 0.08 0.28 0.28 0.37
+  M 0.07 0.43 0.18 0.32</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparación entre sexo</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(mytable,<span class="at">margin=</span><span class="dv">2</span>),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   
+       A    N    U    Y
+  F 0.56 0.41 0.62 0.55
+  M 0.44 0.59 0.38 0.45</code></pre>
+</div>
+</div>
+</section>
+<section id="funciones-básicas-para-el-procesamiento" class="level3">
+<h3 class="anchored" data-anchor-id="funciones-básicas-para-el-procesamiento">Funciones básicas para el procesamiento</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>()    <span class="co"># suma elementos</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>()   <span class="co"># promedio</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>()     <span class="co"># desviación estándar</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>()    <span class="co"># máximo</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>() <span class="co"># posición de valor máximo </span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>()    <span class="co"># mínimo</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>() <span class="co"># posición de valor mínimo </span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rank</span>()   <span class="co"># ranking de valores</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>() <span class="co"># mediana</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>()  <span class="co"># rango</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rev</span>()    <span class="co"># revertir elementos</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>() <span class="co"># lista de elementos únicos</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>() <span class="co"># largo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data_chile<span class="sc">$</span>income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data_chile<span class="sc">$</span>income, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 33875.86</code></pre>
+</div>
+</div>
+</section>
+</section>
 </section>
 
 </main>

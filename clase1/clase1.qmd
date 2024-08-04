@@ -10,23 +10,234 @@ author:
       - name: CIIR & OLES
 ---
 
-## Introducción
+# Introducción
 
-OLES es......
+El Observatorio de Violencia y Legitimidad Social (OLES) es una plataforma que desarrolla investigación colaborativa en temáticas relacionadas con la violencia, explorando sus sentidos, formas de justificación, así como las diversas formas en que la sociedad chilena ha desarrollado procesos de construcción de legitimidad social frente a las autoridades, considerando el rol de la justicia como elemento clave en la comprensión de las transformaciones sociales que vive actualmente el país.
 
-## Datos
+| Clases                                         |
+|------------------------------------------------|
+| **Introducción a R**                           |
+| Procesamiento de Datos Numéricos con Tidyverse |
+| Procesamiento de Datos Numéricos con Tidyverse |
+| Procesamiento de Datos Textuales con Tidyverse |
+
+: Planificación de las sesiones
+
+# ¿Qué es el R base?
+
+El término "R base" se refiere a la versión fundamental del lenguaje de programación R y su conjunto de funciones y paquetes básicos que vienen preinstalados cuando se instala R. R base incluye las herramientas esenciales necesarias para realizar análisis estadísticos, manipulación de datos y generación de gráficos sin necesidad de instalar paquetes adicionales (Respuesta de ChatGPT).
+
+## R como calculadora
 
 ```{r}
-1 + 1
+#| eval: false
+2 + 2      # suma
+2/2        # división
+2*2        # multiplicación
+2^2        # exponente
+sqrt(2)    # raiz cuadrada
+log(2)     # log
+exp(2)     # exponencial
+2 == 2     # evaluación lógica
+42 >= 2    # evaluación lógica
+2 <= 42    # evaluación lógica
+2 != 42    # evaluación lógica
+23 %/% 2   # division por entero -> 11
+23 %% 2    # el remanente -> 1
+x <- 7        # operador de asignación
+
 ```
 
-## Procesamiento de base de datos
+## R en base a objetos
+
+R es un lenguaje de programación orientado a objetos (OOP), lo que significa que organiza los datos y las funcionalidades en estructuras llamadas objetos. En R, casi todo es un objeto, incluidos los datos, las funciones y los resultados de las operaciones. Esta orientación a objetos permite una mayor modularidad y reutilización del código. A continuación, se describen los conceptos básicos de la programación orientada a objetos en R.
 
 ```{r}
-#| echo: false
-2 * 2
+#| eval: false
+# Operaciones aritméticas básicas
+a <- 5
+b <- 3
+
+suma <- a + b          # Suma
+resta <- a - b         # Resta
+producto <- a * b      # Multiplicación
+cociente <- a / b      # División
+potencia <- a ^ b      # Exponenciación
 ```
 
-## Lalaxd
+## Procesamiento básico de datos
 
-## 
+```{r}
+#| eval: false
+# Estadísticas descriptivas básicas
+data <- c(4, 8, 15, 16, 23, 42) # Vector de datos
+
+media <- mean(data)        # Media
+mediana <- median(data)    # Mediana
+desviacion <- sd(data)     # Desviación estándar
+resumen <- summary(data)   # Resumen estadístico
+```
+
+## Vectores y matrices
+
+Un vector en R es una estructura de datos unidimensional que contiene elementos del mismo tipo. Es el tipo de datos más básico y fundamental en R. Los elementos de un vector pueden ser numéricos, caracteres, lógicos, entre otros. Los vectores se crean utilizando la función c(), que concatena los elementos.
+
+Una matriz en R es una estructura de datos bidimensional que contiene elementos del mismo tipo, organizados en filas y columnas. Las matrices se crean utilizando la función matrix().
+
+```{r}
+#| eval: false
+# Crear el vector de datos
+data <- c(4, 8, 15, 16, 23, 42)
+
+# Crear el vector de nombres
+rut <- c(1, 2, 3, 4, 5, 6)
+
+# Combinar los vectores en una matriz
+
+## Opción 1
+
+matriz <- matrix(c(rut, data), byrow=FALSE)
+
+## Opción 2
+
+matriz <- matrix(c(rut, data), nrow=6, ncol=2, byrow=FALSE)
+
+# Asignar nombres a las columnas
+colnames(matriz) <- c("Nombre", "Valor")
+
+matriz
+
+```
+
+## Dataframe.
+
+Un data.frame en R es una estructura de datos bidimensional similar a una tabla en una base de datos o una hoja de cálculo en Excel. Es una de las estructuras de datos más comunes y útiles en R para manejar conjuntos de datos. Un data.frame puede contener columnas de diferentes tipos de datos (numéricos, caracteres, factores, etc.), y cada columna debe tener el mismo número de elementos.
+
+```{r}
+#| eval: false
+nombres <- c("A", "B", "C", "D", "E", "F")
+valores <- c(4, 8, 15, 16, 23, 42)
+
+matriz3 <- matrix(c(nombres, data), nrow=6, ncol=2, byrow=FALSE)
+
+matriz3 # No está bien.
+
+df <- data.frame(Nombre = nombres, Valor = valores)
+
+df # Manipulable.
+
+```
+
+## Las librerías
+
+Una librería en R, también conocida como paquete (package), es una colección de funciones, datos y compilaciones de código que extienden las capacidades del lenguaje R. Las librerías permiten a los usuarios realizar tareas específicas sin tener que escribir código desde cero, aprovechando así el trabajo y la experiencia de otros desarrolladores.
+
+```{r}
+#| eval: true
+# Cargamos los datos de Chile
+#install.packages("carData")
+library("carData")
+data("Chile") # datos "flotante"
+data_chile <- Chile; # crea dataframe
+rm(Chile) # remueve "flotante"
+head(data_chile) # muestra 6 primeras observaciones
+```
+
+```{r}
+dim(data_chile)
+```
+
+## Procesamiento de datos del plebiscito de 1988. 
+
+### Descripción y manipulació de datos
+
+```{r}
+#| eval: false
+data_chile[3,8]
+# todas las columnas de la fila 4
+head(data_chile[4,])
+# todas las filas de la columna 6
+head(data_chile[,6])
+data_chile[-1,]                   # excluye primera fila
+data_chile[, -(2:4)]              # excluye columnas 2 a 4
+data_chile[, c("income","vote")]  # solo vars income and vote
+data_chile[c(1,5),'vote']         # variable voto para observaciones 1 y 5
+data_chile$vote                  # selecciona col vote
+```
+
+### Filtro de datos
+
+```{r}
+jovenes_pinochetistas <- data_chile[data_chile$age <= 35 & data_chile$vote=="Y",]
+```
+
+### Creación de nuevas variables
+
+```{r}
+data_chile$year <- 1988
+```
+
+```{r}
+data_chile$birthyear <- data_chile$year -  data_chile$age
+```
+
+```{r}
+data_chile$age_group <- NA
+data_chile$age_group[data_chile$age <=35] <- "Young"
+data_chile$age_group[data_chile$age > 35] <- "Old"
+```
+
+### Resumen de datos
+
+```{r}
+summary(data_chile[,c("age","income","vote")])
+```
+
+### Estructura de datos
+
+```{r}
+str(data_chile)
+```
+
+### Tablas de contigencia
+
+```{r}
+mytable <- 
+table(data_chile$sex, data_chile$vote)
+mytable
+```
+
+```{r}
+# Comparación dentro de los sexos
+
+round(prop.table(mytable,margin=1),2)
+```
+
+```{r}
+# Comparación entre sexo
+round(prop.table(mytable,margin=2),2)
+```
+
+### Funciones básicas para el procesamiento
+
+```{r}
+#| eval: false
+sum()    # suma elementos
+mean()   # promedio
+sd()     # desviación estándar
+max()    # máximo
+which.max() # posición de valor máximo 
+min()    # mínimo
+which.min() # posición de valor mínimo 
+rank()   # ranking de valores
+median() # mediana
+range()  # rango
+rev()    # revertir elementos
+unique() # lista de elementos únicos
+length() # largo
+```
+
+```{r}
+mean(data_chile$income)
+mean(data_chile$income, na.rm = TRUE)
+```
