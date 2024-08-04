@@ -1,0 +1,26 @@
+---
+title: "CLASE 1 - R Base "
+subtitle: "Curso de Introducción a R - Observatorio de Legimación de la Violencia (OLES)"
+format: html
+editor: visual
+author:
+  - name: Matías Deneken
+    email: m.deneken@uc.cl
+    affiliations:
+      - name: CIIR & OLES
+---
+
+# Introducción
+
+El Observatorio de Violencia y Legitimidad Social [(OLES)](https://oles2.netlify.app) es una plataforma que desarrolla investigación colaborativa en temáticas relacionadas con la violencia, explorando sus sentidos, formas de justificación, así como las diversas formas en que la sociedad chilena ha desarrollado procesos de construcción de legitimidad social frente a las autoridades, considerando el rol de la justicia como elemento clave en la comprensión de las transformaciones sociales que vive actualmente el país.
+
+Este curso de R buscará introducir a los y las participantes en las nociones básicas del software en su interfaz de R Studio. Para su instalación pueden ver el siguiente vídeo pinchando [\[Aquí\]](https://www.youtube.com/watch?v=RtkCAKXsVbw&t=204s).
+
+| Clases                                                          |
+|-----------------------------------------------------------------|
+| Introducción a R                                                |
+| **Procesamiento de Datos Cuantitativos con Tidyverse**          |
+| Estadísticas descriptiva y Visualización de datos con Tidyverse |
+| Introducción al análisis cuantitativo del texto                 |
+
+: Planificación de las sesiones
