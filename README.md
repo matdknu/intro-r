@@ -1,6 +1,6 @@
 # Introducción al procesamiento de datos en R
 
-## Violencia, legitimidad y justicia.
+## Observatorio Violencia y Legitimidad Social
 
 El presente curso busca dotar de conocimiento práctico en el software R, en su interfaz R Studio. El curso se plantea desde una introducción a R, procesamiento de datos con el paquete tidyverse y una breve introducción al procesamiento de datos textuales.
 
