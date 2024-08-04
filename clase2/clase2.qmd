@@ -2,6 +2,10 @@
 title: "CLASE 2 - Introducción a Tidyverse "
 subtitle: "Curso de Introducción a R - Observatorio de Legimación de la Violencia (OLES)"
 format: html
+execute:
+  echo: true
+  warning: false
+  message: false
 editor: visual
 author:
   - name: Matías Deneken
@@ -40,19 +44,142 @@ Además, R trabaja en forma preferente con datos tabulados (en forma de tablas) 
 ![Herramientas y lógica de tidyverse](images/tidyverse.png){fig-alt="Herramientas y lógica de tidyverse" fig-align="center" width="363"}
 
 ```{r}
+#| message: false
+#| warning: false
 library(tidyverse)
 library(readr) # Importanción de datos
 library(dplyr) # Funciones de procesamiento
 library(ggplot2) # Visualización de datos
 library(readxl) #Datos de excel
+library(httr)
 ```
+
+## La pipa de Tidyverse `%>%`
+
+La pipa (`%>%`) en `tidyverse` es un operador que facilita la escritura y lectura de código al permitir encadenar una secuencia de operaciones. La pipa toma la salida de una función y la pasa como entrada a la siguiente función, lo que hace que el código sea más limpio y más fácil de entender.
+
+Una forma fácil de realizar es con `ctrl/command` + `shift` + `m`.
+
+![](images/mipa-magrit.jpeg){fig-align="left" width="197"}
+
+![](images/pipa-tidyvers.webp){fig-align="right" width="200"}
 
 ## Funciones básicas
 
 ### Primer paso: Importación de base de datos
 
-Importaremos la bb
+Importaremos una base de datos de acuerdo al paquete readxl, puesto que el paquete readr no agota toda la importación de los datos.
 
 ```{r}
-data <- read_excel("/Users/matdknu/Dropbox/OLES/intro-r/bbdd/eventos_22_24.xlsx")
+#| eval: false
+eventos <- read_excel("bbdd/eventos_22_24.xlsx")
+```
+
+Otra forma de importar los datos es directamente desde github.
+
+```{r}
+#| message: false
+#| warning: false
+url <- "https://github.com/matdknu/intro-r/raw/main/bbdd/eventos_22_24.xlsx"
+
+# Crear un archivo temporal
+temp_file <- tempfile(fileext = ".xlsx")
+
+# Descargar el archivo desde GitHub
+GET(url, write_disk(temp_file, overwrite = TRUE))
+
+# Leer el archivo Excel en R
+eventos <- read_excel(temp_file)
+```
+
+![](images/captura-link.png){fig-align="center"}
+
+### Procesamiento de base de datos
+
+Explorando la base de datos.
+
+```{r}
+glimpse(eventos) # Verificar la base de datos
+```
+
+Se aprecia que la base de datos tienen nombres que complejizan su manipulación. Un correcto nombre de variables debe ser
+
+-   Minúsculas
+
+-   Sin espacios
+
+-   Sin números.
+
+El R base nos ofrece algunas herramientos para su correcto renombramiento.
+
+```{r}
+#| eval: false
+colnames(eventos)[1] <- "motivo"
+colnames(eventos)[2] <- "tipo"
+colnames(eventos)[3] <- "region"
+colnames(eventos)[4] <- "n_asistentes"
+colnames(eventos)[5] <- "fecha_inicio"
+colnames(eventos)[6] <- "hora_inicio"
+colnames(eventos)[7] <- "fecha_termino"
+colnames(eventos)[8] <- "hora_termino"
+```
+
+Tidyverse lo ofrece de la siguiente forma (Ojo, si ya corrieron el código de arriba les saldrá ERROR).
+
+```{r}
+eventos <- eventos %>%
+  rename(
+    motivo = "MOTIVO",
+    tipo = "TIPO",
+    region = "REGION",
+    n_asistentes = "CANTIDAD ASISTENTES",
+    fecha_inicio = "FECHA INICIO",
+    hora_inicio = "HORA INICIO",
+    fecha_termino = "FECHA TERMINO",
+    hora_termino = "HORA TERMINO"
+  )
+```
+
+Seleccionamos las variables de interés con el comando select.
+
+```{r}
+eventos %>% select(motivo, region) # Variable(s) de interés.
+```
+
+Filtramos con filter:
+
+-   Cuando los casos de las variables son de tipo texto, deben ir en comillas. Por ejemplo `"Paro Nacional"`
+
+-   Cuando los casos de la variable son de tipo número, van sin comillas. Por ejemplo: `2000.`
+
+Primero, queremos solo los eventos con motivo laboral.
+
+Segundo, queremos los eventos con motivo laboral que ocurrieron en la región de valparaíso.
+
+```{r}
+eventos %>% filter(motivo == "Laboral")
+eventos %>% filter(motivo == "Laboral", region == "V REGION VALPARAISO") #Filtramos
+```
+
+Apliquemos ¿Cuál creen que es correcto para el uso de datos?
+
+```{r}
+#| eval: false
+eventos <- eventos %>% filter(motivo == "Laboral", region == "V REGION VALPARAISO") #Filtramos
+eventos_valparaiso <- eventos %>% filter(motivo == "Laboral", region == "V REGION VALPARAISO") #Filtramos
+
+```
+
+Hagamos un filtro numérico con operadores lógicos.
+
+```{r}
+eventos100 <-eventos %>% filter(n_asistentes == 100) 
+head(eventos100)
+```
+
+Combinemos algunas funciones
+
+```{r}
+eventos100 <-eventos %>% filter(n_asistentes == 100)%>% select(tipo, region, fecha_inicio)
+head(eventos100)
 ```
