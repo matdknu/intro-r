@@ -112,7 +112,7 @@ matriz <- matrix(c(rut, data), byrow=FALSE)
 matriz <- matrix(c(rut, data), nrow=6, ncol=2, byrow=FALSE)
 
 # Asignar nombres a las columnas
-colnames(matriz) <- c("Nombre", "Valor")
+colnames(matriz) <- c("Rut", "Valor")
 
 matriz
 
@@ -129,7 +129,8 @@ valores <- c(4, 8, 15, 16, 23, 42)
 
 matriz3 <- matrix(c(nombres, data), nrow=6, ncol=2, byrow=FALSE)
 
-matriz3 # No está bien.
+matriz3 # No está bien porque deben ser del mismo conjunto de 
+        # datos
 
 df <- data.frame(Nombre = nombres, Valor = valores)
 
