@@ -256,8 +256,7 @@ masividad_protestas_region <- eventos %>% select(cat_asistentes, region) %>%
 eventos %>% filter(region == "IX REGION ARAUCANIA" | region == "REGION METROPOLITANA") %>% filter(motivo == "Étnico") %>% group_by(region) %>%  count(motivo)
 ```
 
-2.  Selecciona todas las manifestaciones (motivo) que fueron\
-    Género (Feminista), en calida de Marcha sin autorización y que tuvieron igual o maás de 500 manifestantes.
+2.  Selecciona todas las manifestaciones (motivo) que fueron Género (Feminista), en calidad de Marcha sin autorización y que tuvieron igual o más de 500 manifestantes.
 
 Al imprimir la base de datos, que se vea la región y fecha de inicio.
 

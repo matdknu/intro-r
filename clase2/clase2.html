@@ -195,11 +195,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GET</span>(url, <span class="fu">write_disk</span>(temp_file, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://raw.githubusercontent.com/matdknu/intro-r/main/bbdd/eventos_22_24.xlsx]
-  Date: 2024-08-05 14:14
+  Date: 2024-08-05 22:24
   Status: 200
   Content-Type: application/octet-stream
   Size: 3.08 MB
-&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//Rtmp7WMAPQ/file63d373bc6b8.xlsx</code></pre>
+&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//Rtmp10CkYb/file158ad0bc65a.xlsx</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo Excel en R</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>eventos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(temp_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -497,7 +497,8 @@ $ ...9                  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 <section id="pequeñas-tarea-con-comentarios-sustantivos" class="level1">
 <h1>Pequeñas tarea con comentarios sustantivos</h1>
 <ol type="1">
-<li>Calcula la cantidad de eventos con motivo étnico agrupando por la región de la araucanía y metropolitana. Los resultados deben verse así.</li>
+<li><p>Calcula la cantidad de eventos con motivo étnico agrupando por la región de la araucanía y metropolitana.</p>
+<p><strong>Los resultados deben verse así.</strong></p></li>
 </ol>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -510,11 +511,10 @@ $ ...9                  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 </div>
 </div>
 <ol start="2" type="1">
-<li>Selecciona todas las manifestaciones (motivo) que fueron<br>
-Género (Feminista), en calida de Marcha sin autorización y que tuvieron igual o maás de 500 manifestantes.</li>
+<li>Selecciona todas las manifestaciones (motivo) que fueron Género (Feminista), en calidad de Marcha sin autorización y que tuvieron igual o más de 500 manifestantes.</li>
 </ol>
 <p>Al imprimir la base de datos, que se vea la región y fecha de inicio.</p>
-<p>Los resultados deben verse así:</p>
+<p><strong>Los resultados deben verse así:</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 11 × 2
