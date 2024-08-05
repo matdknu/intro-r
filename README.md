@@ -14,13 +14,13 @@ Los datos a utilizar provendrán de diferentes fuentes:
 
 Al final del curso se buscará que las personas que hayan participado tengan nociones básicas de visualización y conocimiento para el procesamiento de datos.
 
-Dudas y consultas: [m.deneken[at]uc.cl](m.deneken@uc.cl)
-
 | Clase | Contenido                                                                      | Link                                                    | Referencias                                                                |
-|---------------|-----------------|------------------|------------------------|
+|-----------------|-----------------|-----------------|----------------------|
 | 1     | Introducción a R                                                               | [Aquí](https://matdknu.github.io/intro-r/clase1/clase1) | [An Introduction to R](https://intro2r.com "An Introduction to R [Libro]") |
 | 2     | Procesamiento de Datos Cuantitativos con Tidyverse                             | [Aquí](https://matdknu.github.io/intro-r/clase2/clase2) | [R For Data Science](https://r4ds.had.co.nz/ "R For Data Science")         |
 | 3     | Estadística descriptiva y Visualización de Datos Cuantitativos con con Ggplot2 | [Aquí](https://matdknu.github.io/intro-r/clase3/clase3) | [R For Data Science](https://r4ds.had.co.nz/ "R For Data Science")         |
 | 4     | Introducción al anális cuantitativo del texto                                  | [Aquí](https://matdknu.github.io/intro-r/clase4/clase4) | [Text Mining with R](https://www.tidytextmining.com/)                      |
+
+Equipo de trabajo: Matías Deneken, Bruno Rojas y Luciano Sáez.
 
 ![](images/oles_ok.jpg)

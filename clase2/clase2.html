@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
-<p>El Observatorio de Violencia y Legitimidad Social (OLES) es una plataforma que desarrolla investigación colaborativa en temáticas relacionadas con la violencia, explorando sus sentidos, formas de justificación, así como las diversas formas en que la sociedad chilena ha desarrollado procesos de construcción de legitimidad social frente a las autoridades, considerando el rol de la justicia como elemento clave en la comprensión de las transformaciones sociales que vive actualmente el país.</p>
+<p>El Observatorio de Violencia y Legitimidad Social <a href="https://oles2.netlify.app">(OLES)</a> es una plataforma que desarrolla investigación colaborativa en temáticas relacionadas con la violencia, explorando sus sentidos, formas de justificación, así como las diversas formas en que la sociedad chilena ha desarrollado procesos de construcción de legitimidad social frente a las autoridades, considerando el rol de la justicia como elemento clave en la comprensión de las transformaciones sociales que vive actualmente el país.</p>
 <p>Este curso de R buscará introducir a los y las participantes en las nociones básicas del software en su interfaz de R Studio. Para su instalación pueden ver el siguiente vídeo pinchando <a href="https://www.youtube.com/watch?v=RtkCAKXsVbw&amp;t=204s">[Aquí]</a>.</p>
 <table class="table">
 <caption>Planificación de las sesiones</caption>
@@ -195,11 +195,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GET</span>(url, <span class="fu">write_disk</span>(temp_file, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://raw.githubusercontent.com/matdknu/intro-r/main/bbdd/eventos_22_24.xlsx]
-  Date: 2024-08-04 22:58
+  Date: 2024-08-05 14:14
   Status: 200
   Content-Type: application/octet-stream
   Size: 3.08 MB
-&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//RtmpdyD6SY/file2fdc1138a3f8.xlsx</code></pre>
+&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//Rtmp7WMAPQ/file63d373bc6b8.xlsx</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo Excel en R</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>eventos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(temp_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -493,6 +493,46 @@ $ ...9                  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 </div>
 </section>
 </section>
+</section>
+<section id="pequeñas-tarea-con-comentarios-sustantivos" class="level1">
+<h1>Pequeñas tarea con comentarios sustantivos</h1>
+<ol type="1">
+<li>Calcula la cantidad de eventos con motivo étnico agrupando por la región de la araucanía y metropolitana. Los resultados deben verse así.</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+# Groups:   region [2]
+  region               motivo     n
+  &lt;chr&gt;                &lt;chr&gt;  &lt;int&gt;
+1 IX REGION ARAUCANIA  Étnico   153
+2 REGION METROPOLITANA Étnico     1</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Selecciona todas las manifestaciones (motivo) que fueron<br>
+Género (Feminista), en calida de Marcha sin autorización y que tuvieron igual o maás de 500 manifestantes.</li>
+</ol>
+<p>Al imprimir la base de datos, que se vea la región y fecha de inicio.</p>
+<p>Los resultados deben verse así:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 2
+   region                       fecha_inicio       
+   &lt;chr&gt;                        &lt;dttm&gt;             
+ 1 VIII REGION BIO BIO          2022-11-25 00:00:00
+ 2 IV REGION COQUIMBO           2022-03-08 00:00:00
+ 3 XV REGION ARICA Y PARINACOTA 2022-03-08 00:00:00
+ 4 I REGION TARAPACA            2022-03-08 00:00:00
+ 5 XIV REGION LOS RIOS          2022-03-08 00:00:00
+ 6 VIII REGION BIO BIO          2022-03-08 00:00:00
+ 7 IX REGION ARAUCANIA          2022-03-08 00:00:00
+ 8 X REGION LOS LAGOS           2022-03-08 00:00:00
+ 9 IX REGION ARAUCANIA          2023-03-08 00:00:00
+10 IX REGION ARAUCANIA          2024-03-08 00:00:00
+11 VII REGION MAULE             2024-03-08 00:00:00</code></pre>
+</div>
+</div>
 </section>
 
 </main>

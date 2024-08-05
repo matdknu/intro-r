@@ -16,7 +16,7 @@ author:
 
 ## Introducción
 
-El Observatorio de Violencia y Legitimidad Social (OLES) es una plataforma que desarrolla investigación colaborativa en temáticas relacionadas con la violencia, explorando sus sentidos, formas de justificación, así como las diversas formas en que la sociedad chilena ha desarrollado procesos de construcción de legitimidad social frente a las autoridades, considerando el rol de la justicia como elemento clave en la comprensión de las transformaciones sociales que vive actualmente el país.
+El Observatorio de Violencia y Legitimidad Social [(OLES)](https://oles2.netlify.app) es una plataforma que desarrolla investigación colaborativa en temáticas relacionadas con la violencia, explorando sus sentidos, formas de justificación, así como las diversas formas en que la sociedad chilena ha desarrollado procesos de construcción de legitimidad social frente a las autoridades, considerando el rol de la justicia como elemento clave en la comprensión de las transformaciones sociales que vive actualmente el país.
 
 Este curso de R buscará introducir a los y las participantes en las nociones básicas del software en su interfaz de R Studio. Para su instalación pueden ver el siguiente vídeo pinchando [\[Aquí\]](https://www.youtube.com/watch?v=RtkCAKXsVbw&t=204s).
 
@@ -243,4 +243,30 @@ head(protestas_region_filtrada)
 masividad_protestas_region <- eventos %>% select(cat_asistentes, region) %>% 
   group_by(region) %>% 
   count(cat_asistentes) 
+```
+
+# Pequeñas tarea con comentarios sustantivos
+
+1.  Calcula la cantidad de eventos con motivo étnico agrupando por la región de la araucanía y metropolitana.
+
+    **Los resultados deben verse así.**
+
+```{r}
+#| echo: false
+eventos %>% filter(region == "IX REGION ARAUCANIA" | region == "REGION METROPOLITANA") %>% filter(motivo == "Étnico") %>% group_by(region) %>%  count(motivo)
+```
+
+2.  Selecciona todas las manifestaciones (motivo) que fueron\
+    Género (Feminista), en calida de Marcha sin autorización y que tuvieron igual o maás de 500 manifestantes.
+
+Al imprimir la base de datos, que se vea la región y fecha de inicio.
+
+**Los resultados deben verse así:**
+
+```{r}
+#| echo: false
+
+eventos %>% filter(motivo == "Género (Feminista)") %>% filter(tipo == "Marcha sin autorización") %>% filter(n_asistentes >= 500) %>% 
+  select(region, fecha_inicio)
+
 ```
