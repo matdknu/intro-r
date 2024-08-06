@@ -1,5 +1,5 @@
 ---
-title: "CLASE 1 - R Base "
+title: "CLASE 3 - R Base "
 subtitle: "Curso de Introducción a R - Observatorio de Legimación de la Violencia (OLES)"
 format: html
 editor: visual
