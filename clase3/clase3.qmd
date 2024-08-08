@@ -75,6 +75,26 @@ En R, un "resumen de datos agrupados" se refiere a una técnica para calcular es
 
 Para realizar un resumen de datos agrupados en R, puedes usar funciones como `aggregate()`, `dplyr::group_by()` junto con `dplyr::summarize()` o `dplyr::summarise()`,
 
+**Funciones totales**
+
+```{r}
+#| eval: false 
+
+result <- data_frame |> 
+  group_by(group_column) |> 
+  summarize(
+    total_sum = sum(n, na.rm = TRUE),
+    mean_value = mean(n, na.rm = TRUE),
+    median_value = median(n, na.rm = TRUE),
+    variance = var(n, na.rm = TRUE),
+    sd_value = sd(n, na.rm = TRUE),
+    max_value = max(n, na.rm = TRUE),
+    min_value = min(n, na.rm = TRUE),
+    count = n(),
+    unique_count = n_distinct(n)
+  )
+```
+
 ```{r}
 eventos %>% 
   summarise(mean_ytotcor_region = mean(n_asistentes, na.rm = T))
@@ -142,10 +162,72 @@ postulantes_anio <- postulantes_anio |>
   mutate(n = as.numeric(n))
 
 # Realizar la agrupación y suma
-result <- postulantes_anio |> 
+conteo2 <- postulantes_anio |> 
   group_by(anio_postulacion) |> 
-  summarize(total_n = sum(n, na.rm = TRUE)); result
+  summarize(total_n = sum(n, na.rm = TRUE)); conteo2
 ```
 
-```{}
+De igual forma, podemos añadir una nueva variable para contrastar.
+
+```{r}
+conteo3 <- postulantes_anio |> 
+  group_by(anio_postulacion, genero) |> 
+  summarize(total_n = sum(n, na.rm = TRUE)); conteo3
+```
+
+Y seguir....
+
+```{r}
+conteo4 <- postulantes_anio |> 
+  group_by(anio_postulacion, genero, comuna) |> 
+  summarize(total_n = sum(n, na.rm = TRUE)); conteo4
+```
+
+## ¿Ahora? Visualización de datos
+
+Ggplot2 es uno de los paquetes para una correcta visualización de datos. La creatividad y correcta visualización corresponde a cuáles son los objetivos comunicativos.
+
+Además, existe una serie de páginas web que poseen galerías con ejemplos ilustrativos. Dentro de ellos:
+
+1.  [R Graph Gallery](https://r-graph-gallery.com/ggplot2-package.html)
+2.  [30 gráficos de Ggplot2](https://epirhandbook.com/new_pages/ggplot_basics.html)
+3.  Entre otros...
+
+Veamos un gráfico de líneas.
+
+```{r}
+#| message: false
+#| warning: false
+
+ggplot(conteo2, aes(x = anio_postulacion, y = total_n)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Postulantes a carabineros según año",
+       x = "Año de postulación",
+       y = "Total de postulaciones") +
+  theme_minimal()
+```
+
+Un gráfico de barras.
+
+```{r}
+#| message: false
+#| warning: false
+
+ ggplot(conteo2, aes(x = anio_postulacion, y = total_n)) +
+  geom_bar(stat = "identity") + # Usar stat="identity" para barras con valores de y explícitos
+  labs(title = "Postulantes a carabineros según año",
+       x = "Año de postulación",
+       y = "Total de postulaciones") 
+```
+
+```{r}
+ggplot(conteo2, aes(x = anio_postulacion, y = total_n, 
+                    fill = as.factor(anio_postulacion))) +
+  geom_bar(stat = "identity") + # Usar stat="identity" para barras con valores de y explícitos
+  labs(title = "Postulantes a carabineros según año",
+       x = "Año de postulación",
+       y = "Total de postulaciones") +
+  theme_minimal()
+
 ```
