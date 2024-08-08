@@ -24,3 +24,76 @@ Este curso de R buscará introducir a los y las participantes en las nociones b�
 | Introducción al análisis cuantitativo del texto                     |
 
 : Planificación de las sesiones
+
+# Base de datos y librerías.
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(readr) # Importanción de datos
+library(dplyr) # Funciones de procesamiento
+library(ggplot2) # Visualización de datos
+library(readxl) #Datos de excel
+library(httr)
+```
+
+```{r}
+#| message: false
+#| warning: false
+url <- "https://github.com/matdknu/intro-r/raw/main/bbdd/eventos_22_24.xlsx"
+
+# Crear un archivo temporal
+temp_file <- tempfile(fileext = ".xlsx")
+
+# Descargar el archivo desde GitHub
+GET(url, write_disk(temp_file, overwrite = TRUE))
+
+# Leer el archivo Excel en R
+eventos <- read_excel(temp_file)
+```
+
+Volvemos a renombrar para trabajar similar a la Clase 2.
+
+```{r}
+eventos <- eventos %>%
+  rename(
+    motivo = "MOTIVO",
+    tipo = "TIPO",
+    region = "REGION",
+    n_asistentes = "CANTIDAD ASISTENTES",
+    fecha_inicio = "FECHA INICIO",
+    hora_inicio = "HORA INICIO",
+    fecha_termino = "FECHA TERMINO",
+    hora_termino = "HORA TERMINO"
+  )
+```
+
+# Resumen de datos agrupados. 
+
+En R, un "resumen de datos agrupados" se refiere a una técnica para calcular estadísticas descriptivas de un conjunto de datos que ha sido agrupado en categorías o grupos. Esto es útil cuando quieres obtener información agregada o resumida sobre diferentes subgrupos dentro de tu dataset.
+
+Para realizar un resumen de datos agrupados en R, puedes usar funciones como `aggregate()`, `dplyr::group_by()` junto con `dplyr::summarize()` o `dplyr::summarise()`,
+
+```{r}
+eventos %>% 
+  summarise(mean_ytotcor_region = mean(n_asistentes, na.rm = T))
+```
+
+```{r}
+eventos %>% 
+  summarise(mean_ytotcor_region = mean(n_asistentes, na.rm = T))
+```
+
+Sin decimales.
+
+```{r}
+eventos %>% 
+  summarise(mean_eventos = round(mean(n_asistentes, na.rm = TRUE)))
+
+```
+
+```{r}
+eventos |> group_by(region) |> 
+  summarise(mean_eventos_region = round(mean(n_asistentes, na.rm = TRUE)))
+```
