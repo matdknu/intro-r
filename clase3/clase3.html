@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -103,6 +137,111 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+</section>
+<section id="base-de-datos-y-librerías." class="level1">
+<h1>Base de datos y librerías.</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr) <span class="co"># Importanción de datos</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># Funciones de procesamiento</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># Visualización de datos</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl) <span class="co">#Datos de excel</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://github.com/matdknu/intro-r/raw/main/bbdd/eventos_22_24.xlsx"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un archivo temporal</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>temp_file <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".xlsx"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Descargar el archivo desde GitHub</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GET</span>(url, <span class="fu">write_disk</span>(temp_file, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Response [https://raw.githubusercontent.com/matdknu/intro-r/main/bbdd/eventos_22_24.xlsx]
+  Date: 2024-08-08 14:07
+  Status: 200
+  Content-Type: application/octet-stream
+  Size: 3.08 MB
+&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//RtmpGKL5jF/file2306189014a9.xlsx</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo Excel en R</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>eventos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(temp_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Volvemos a renombrar para trabajar similar a la Clase 2.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>eventos <span class="ot">&lt;-</span> eventos <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">motivo =</span> <span class="st">"MOTIVO"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">tipo =</span> <span class="st">"TIPO"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">region =</span> <span class="st">"REGION"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_asistentes =</span> <span class="st">"CANTIDAD ASISTENTES"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fecha_inicio =</span> <span class="st">"FECHA INICIO"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">hora_inicio =</span> <span class="st">"HORA INICIO"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fecha_termino =</span> <span class="st">"FECHA TERMINO"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">hora_termino =</span> <span class="st">"HORA TERMINO"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="resumen-de-datos-agrupados." class="level1">
+<h1>Resumen de datos agrupados.</h1>
+<p>En R, un “resumen de datos agrupados” se refiere a una técnica para calcular estadísticas descriptivas de un conjunto de datos que ha sido agrupado en categorías o grupos. Esto es útil cuando quieres obtener información agregada o resumida sobre diferentes subgrupos dentro de tu dataset.</p>
+<p>Para realizar un resumen de datos agrupados en R, puedes usar funciones como&nbsp;<code>aggregate()</code>,&nbsp;<code>dplyr::group_by()</code>&nbsp;junto con&nbsp;<code>dplyr::summarize()</code>&nbsp;o&nbsp;<code>dplyr::summarise()</code>,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>eventos <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_ytotcor_region =</span> <span class="fu">mean</span>(n_asistentes, <span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_ytotcor_region
+                &lt;dbl&gt;
+1                131.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>eventos <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_ytotcor_region =</span> <span class="fu">mean</span>(n_asistentes, <span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_ytotcor_region
+                &lt;dbl&gt;
+1                131.</code></pre>
+</div>
+</div>
+<p>Sin decimales.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>eventos <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_eventos =</span> <span class="fu">round</span>(<span class="fu">mean</span>(n_asistentes, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_eventos
+         &lt;dbl&gt;
+1          131</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>eventos <span class="sc">|&gt;</span> <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_eventos_region =</span> <span class="fu">round</span>(<span class="fu">mean</span>(n_asistentes, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 2
+   region                              mean_eventos_region
+   &lt;chr&gt;                                             &lt;dbl&gt;
+ 1 I REGION TARAPACA                                   148
+ 2 II REGION ANTOFAGASTA                                97
+ 3 III REGION ATACAMA                                  105
+ 4 IV REGION COQUIMBO                                   82
+ 5 IX REGION ARAUCANIA                                  63
+ 6 REGION METROPOLITANA                                184
+ 7 V REGION VALPARAISO                                 147
+ 8 VI REGION LIB.B.O'HIGGINS                            65
+ 9 VII REGION MAULE                                    113
+10 VIII REGION BIO BIO                                 125
+11 X REGION LOS LAGOS                                   65
+12 XI REGION AYSEN DEL GRL. C.IBANEZ                    54
+13 XII REGION MAGALLANES Y ANT.CHILENA                  74
+14 XIV REGION LOS RIOS                                 101
+15 XV REGION ARICA Y PARINACOTA                         55
+16 XVI REGION NUBLE                                    181</code></pre>
+</div>
+</div>
 </section>
 
 </main>
