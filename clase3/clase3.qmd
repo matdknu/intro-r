@@ -191,7 +191,8 @@ Además, existe una serie de páginas web que poseen galerías con ejemplos ilus
 
 1.  [R Graph Gallery](https://r-graph-gallery.com/ggplot2-package.html)
 2.  [30 gráficos de Ggplot2](https://epirhandbook.com/new_pages/ggplot_basics.html)
-3.  Entre otros...
+3.  [Libro de Ggplot2](https://www.kyle-w-brown.com/R-Gallery/flow.html#edge-bundling)
+4.  Entre otros...
 
 Veamos un gráfico de líneas.
 
@@ -230,4 +231,34 @@ ggplot(conteo2, aes(x = anio_postulacion, y = total_n,
        y = "Total de postulaciones") +
   theme_minimal()
 
+```
+
+```{r}
+g2 <- ggplot(postulantes_anio, aes(x = edad)) +
+  geom_density(fill = "steelblue", alpha = 0.7, bw = 2) +  # Ajustar el bandwidth con bw a un valor mayor para suavizar las curvas
+  facet_grid(~ anio_postulacion) +
+  labs(title = "Densidad de Edad por Año",
+       x = "Edad",
+       y = "Densidad") 
+g2
+```
+
+Un poco más bonito!!
+
+```{r}
+ggplot(postulantes_anio, aes(x = edad)) +
+  geom_density(fill = "steelblue", alpha = 0.7, bw = 2) +  # Ajustar el bandwidth con bw a un valor mayor para suavizar las curvas
+  facet_grid(~ anio_postulacion) +
+  labs(title = "Densidad de Edad por Año",
+       x = "Edad",
+       y = "Densidad") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    strip.text.x = element_text(size = 12, face = "bold"),  # Mejorar el estilo del texto del facet
+    axis.title = element_text(size = 12, face = "bold"),    # Mejorar el estilo de los títulos de los ejes
+    axis.text = element_text(size = 10),                    # Mejorar el estilo del texto de los ejes
+    panel.grid.major = element_line(size = 0.5),            # Ajustar el tamaño de las líneas de la cuadrícula
+    panel.grid.minor = element_blank()                      # Eliminar las líneas menores de la cuadrícula
+  )
 ```
