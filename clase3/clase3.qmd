@@ -124,3 +124,28 @@ Ahora, no existe una cantidad postulantes por año, por lo que es importante cre
 postulantes_anio$n <- 1
 postulantes_anio |> mutate(n = 1)
 ```
+
+Una forma de hacer un conteo, considerando la creación de la variable creada, son dos:
+
+```{r}
+conteo <- postulantes_anio %>% count(anio_postulacion); conteo
+```
+
+Sin embargo, también existe la oportunidad de sumar los N.
+
+```{r}
+# Verificar el tipo de datos de la columna n
+str(postulantes_anio)
+
+# Convertir la columna n a numérico si es necesario
+postulantes_anio <- postulantes_anio |> 
+  mutate(n = as.numeric(n))
+
+# Realizar la agrupación y suma
+result <- postulantes_anio |> 
+  group_by(anio_postulacion) |> 
+  summarize(total_n = sum(n, na.rm = TRUE)); result
+```
+
+```{}
+```

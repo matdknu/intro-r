@@ -158,11 +158,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GET</span>(url, <span class="fu">write_disk</span>(temp_file, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://raw.githubusercontent.com/matdknu/intro-r/main/bbdd/eventos_22_24.xlsx]
-  Date: 2024-08-08 14:33
+  Date: 2024-08-08 14:43
   Status: 200
   Content-Type: application/octet-stream
   Size: 3.08 MB
-&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//RtmpuwF6XB/file28052b3d270f.xlsx</code></pre>
+&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//RtmpOJOUgu/file2a6f3531aa37.xlsx</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo Excel en R</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>eventos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(temp_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -277,6 +277,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 8,500 more rows</code></pre>
 </div>
 </div>
+<p>Una forma de hacer un conteo, considerando la creación de la variable creada, son dos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>conteo <span class="ot">&lt;-</span> postulantes_anio <span class="sc">%&gt;%</span> <span class="fu">count</span>(anio_postulacion); conteo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  anio_postulacion     n
+             &lt;dbl&gt; &lt;int&gt;
+1             2018  1927
+2             2019  1738
+3             2020  1023
+4             2021   982
+5             2022   969
+6             2023  1871</code></pre>
+</div>
+</div>
+<p>Sin embargo, también existe la oportunidad de sumar los N.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar el tipo de datos de la columna n</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(postulantes_anio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [8,510 × 7] (S3: tbl_df/tbl/data.frame)
+ $ anio_postulacion: num [1:8510] 2018 2018 2018 2018 2018 ...
+ $ genero          : chr [1:8510] "MASCULINO" "MASCULINO" "MASCULINO" "MASCULINO" ...
+ $ fecha_nac       : POSIXct[1:8510], format: "1997-05-05" "1998-07-24" ...
+ $ edad            : num [1:8510] 20 19 17 17 17 17 18 17 17 17 ...
+ $ comuna          : chr [1:8510] "LA FLORIDA" "PUENTE ALTO" "PUENTE ALTO" "TALAGANTE" ...
+ $ region          : chr [1:8510] "METROPOLITANA" "METROPOLITANA" "METROPOLITANA" "METROPOLITANA" ...
+ $ n               : num [1:8510] 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir la columna n a numérico si es necesario</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>postulantes_anio <span class="ot">&lt;-</span> postulantes_anio <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">as.numeric</span>(n))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizar la agrupación y suma</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> postulantes_anio <span class="sc">|&gt;</span> </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(anio_postulacion) <span class="sc">|&gt;</span> </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_n =</span> <span class="fu">sum</span>(n, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)); result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  anio_postulacion total_n
+             &lt;dbl&gt;   &lt;dbl&gt;
+1             2018    1927
+2             2019    1738
+3             2020    1023
+4             2021     982
+5             2022     969
+6             2023    1871</code></pre>
+</div>
+</div>
+<pre><code></code></pre>
 </section>
 </section>
 
