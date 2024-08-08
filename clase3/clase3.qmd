@@ -99,3 +99,28 @@ eventos |> group_by(region) |>
 ```
 
 ## Probando otra base de datos institucional
+
+```{r}
+#| message: false
+#| warning: false
+postulantes_anio <- read_excel("/Users/matdknu/Dropbox/OLES/intro-r/bbdd/postulantes_anio.xlsx")
+
+```
+
+Recodificación. A veces sale más fácil recodificar con el R base.
+
+```{r}
+colnames(postulantes_anio)[1] <- "anio_postulacion"
+colnames(postulantes_anio)[2] <- "genero"
+colnames(postulantes_anio)[3] <- "fecha_nac"
+colnames(postulantes_anio)[4] <- "edad"
+colnames(postulantes_anio)[5] <- "comuna"
+colnames(postulantes_anio)[6] <- "region"
+```
+
+Ahora, no existe una cantidad postulantes por año, por lo que es importante crea una variable que tenga algún número que permita la manipulación de datos continuos. Las dos formas de realizarlo.
+
+```{r}
+postulantes_anio$n <- 1
+postulantes_anio |> mutate(n = 1)
+```

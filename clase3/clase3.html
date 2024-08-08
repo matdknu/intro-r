@@ -158,11 +158,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">GET</span>(url, <span class="fu">write_disk</span>(temp_file, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response [https://raw.githubusercontent.com/matdknu/intro-r/main/bbdd/eventos_22_24.xlsx]
-  Date: 2024-08-08 14:07
+  Date: 2024-08-08 14:33
   Status: 200
   Content-Type: application/octet-stream
   Size: 3.08 MB
-&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//RtmpGKL5jF/file2306189014a9.xlsx</code></pre>
+&lt;ON DISK&gt;  /var/folders/hg/s4skq8ks6g1fy2jw2fdkp0840000gn/T//RtmpuwF6XB/file28052b3d270f.xlsx</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer el archivo Excel en R</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>eventos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(temp_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -242,6 +242,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 16 XVI REGION NUBLE                                    181</code></pre>
 </div>
 </div>
+<section id="probando-otra-base-de-datos-institucional" class="level2">
+<h2 class="anchored" data-anchor-id="probando-otra-base-de-datos-institucional">Probando otra base de datos institucional</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>postulantes_anio <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"/Users/matdknu/Dropbox/OLES/intro-r/bbdd/postulantes_anio.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Recodificación. A veces sale más fácil recodificar con el R base.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(postulantes_anio)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"anio_postulacion"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(postulantes_anio)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">"genero"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(postulantes_anio)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"fecha_nac"</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(postulantes_anio)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">"edad"</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(postulantes_anio)[<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="st">"comuna"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(postulantes_anio)[<span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="st">"region"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora, no existe una cantidad postulantes por año, por lo que es importante crea una variable que tenga algún número que permita la manipulación de datos continuos. Las dos formas de realizarlo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>postulantes_anio<span class="sc">$</span>n <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>postulantes_anio <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">n =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8,510 × 7
+   anio_postulacion genero    fecha_nac            edad comuna      region     n
+              &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;
+ 1             2018 MASCULINO 1997-05-05 00:00:00    20 LA FLORIDA  METRO…     1
+ 2             2018 MASCULINO 1998-07-24 00:00:00    19 PUENTE ALTO METRO…     1
+ 3             2018 MASCULINO 2000-06-05 00:00:00    17 PUENTE ALTO METRO…     1
+ 4             2018 MASCULINO 2000-07-24 00:00:00    17 TALAGANTE   METRO…     1
+ 5             2018 MASCULINO 2000-08-03 00:00:00    17 SAN BERNAR… METRO…     1
+ 6             2018 MASCULINO 2000-04-27 00:00:00    17 MAIPU       METRO…     1
+ 7             2018 MASCULINO 1999-09-30 00:00:00    18 ÑUÑOA       METRO…     1
+ 8             2018 MASCULINO 2000-07-26 00:00:00    17 LOS MUERMOS LOS L…     1
+ 9             2018 MASCULINO 2000-07-26 00:00:00    17 LOS MUERMOS LOS L…     1
+10             2018 MASCULINO 2000-05-02 00:00:00    17 LAMPA       METRO…     1
+# ℹ 8,500 more rows</code></pre>
+</div>
+</div>
+</section>
 </section>
 
 </main>
