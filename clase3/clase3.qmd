@@ -97,3 +97,5 @@ eventos %>%
 eventos |> group_by(region) |> 
   summarise(mean_eventos_region = round(mean(n_asistentes, na.rm = TRUE)))
 ```
+
+## Probando otra base de datos institucional
